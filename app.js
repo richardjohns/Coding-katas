@@ -550,11 +550,11 @@
 
 //Mutations 
 
-function mutation(arr) {
-  return arr;
-}
-
-mutation(["hello", "hey"]);
+//function mutation(arr) {
+//  return arr;
+//}
+//
+//mutation(["hello", "hey"]);
 
 
 //Falsy Bouncer 
@@ -564,4 +564,44 @@ mutation(["hello", "hey"]);
 //Where do I belong 
 //
 //Caesars Cipher 
+
+// Write some code, that will flatten an array of arbitrarily nested arrays of integers into a flat array of integers. e.g. [[1,2,[3]],4] becomes [1,2,3,4]. 
+
+function flattener(arr) {
+    console.log("This is arr: ",arr)
+    console.log("This is arr.length: ",arr.length)
+
+    newArr = []
+    // loop over array
+    
+    for (i = 0; i < arr.length; i++) {
+        subArr = []
+        // for each object (ie array) found, loop over that sub-array and push to newArr
+        if (typeof arr[i] === "object") {
+            for (j = 0; j < arr[i].length; j++) {
+            
+              if (typeof arr[i][j] === "object") {
+                    for (k = 0; k < arr[i][j].length; k++) {
+                    newArr.push(arr[i][j][k])
+                    }
+                } else {
+                newArr.push(arr[i][j])
+                }
+            }
+        } else {
+            newArr.push(arr[i])
+        }
+    }
+    console.log("This is newArr: ", newArr)
+    return newArr
+}
+
+//flattener([[[1],2,3],4])
+
+flattener([[1,2,[3]],4])
+
+// DO RECURSION
+
+
+
 
