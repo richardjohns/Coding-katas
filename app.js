@@ -565,22 +565,53 @@
 //
 //Caesars Cipher 
 
-// Write some code, that will flatten an array of arbitrarily nested arrays of integers into a flat array of integers. e.g. [[1,2,[3]],4] becomes [1,2,3,4]. 
+// Write some code, that will flatten an array of arbitrarily nested arrays of integers into a flat array of integers. e.g. [[1,2,[3]],4] becomes [1,2,3,4].  
+
+// what about where more than one nested array is used
 
 function flattener(arr) {
-    console.log("This is arr: ",arr)
-    console.log("This is arr.length: ",arr.length)
-
     newArr = []
-    // loop over array
+    newArr2 = []
+    
+    function checkAndPush(element) {
+        console.log('This is element: ', element)
+        console.log('is element an array? ', Array.isArray(element))
+        
+        const isItemArray = item => Array.isArray(item)
+        const pushToNewArray = item => newArr2.push(item)
+            
+        function pushNestedArray(element) {
+            console.log('This is pushNestedArray element: ', element)
+
+            element.forEach((item, i) => {
+                Array.isArray(item) ? pushNestedArray(item) : pushToNewArray(item)
+            })
+        }
+        
+        isItemArray(element) ? pushNestedArray(element) : pushToNewArray(element)
+        
+    }
+    
+    arr.forEach((element) => checkAndPush(element))
+    
+    
+    
+    
+    // slightly refactored
     
     for (i = 0; i < arr.length; i++) {
-        subArr = []
-        // for each object (ie array) found, loop over that sub-array and push to newArr
-        if (typeof arr[i] === "object") {
+        // loop over items in an array...
+        // for each nested array found, loop over that nested array checking for more nested arrays and push any plain numbers found to newArr.
+        
+        // set test variables for each layer of the array.
+        // use 'isArray' test so that conditions aren't triggered by key/value objects.
+        const firstLayerObjFound = Array.isArray(arr[i])        
+
+        if (firstLayerObjFound) {
             for (j = 0; j < arr[i].length; j++) {
-            
-              if (typeof arr[i][j] === "object") {
+    
+              const secondLayerObjFound = Array.isArray(arr[i][j])
+              if (secondLayerObjFound) {
                     for (k = 0; k < arr[i][j].length; k++) {
                     newArr.push(arr[i][j][k])
                     }
@@ -592,8 +623,9 @@ function flattener(arr) {
             newArr.push(arr[i])
         }
     }
+
     console.log("This is newArr: ", newArr)
-    return newArr
+    console.log("This is newArr2: ", newArr2)
 }
 
 //flattener([[[1],2,3],4])
@@ -602,6 +634,22 @@ flattener([[1,2,[3]],4])
 
 // DO RECURSION
 
-
+    //    for (i = 0; i < arr.length; i++) {
+//        // for each object (ie array) found, loop over that sub-array and push to newArr
+//        if (typeof arr[i] === "object") {
+//            for (j = 0; j < arr[i].length; j++) {
+//            
+//              if (typeof arr[i][j] === "object") {
+//                    for (k = 0; k < arr[i][j].length; k++) {
+//                    newArr.push(arr[i][j][k])
+//                    }
+//                } else {
+//                newArr.push(arr[i][j])
+//                }
+//            }
+//        } else {
+//            newArr.push(arr[i])
+//        }
+//    }
 
 
