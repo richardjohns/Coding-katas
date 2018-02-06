@@ -565,39 +565,14 @@
 //
 //Caesars Cipher 
 
+// FLICK CODING TEST
+
 // Write some code, that will flatten an array of arbitrarily nested arrays of integers into a flat array of integers. e.g. [[1,2,[3]],4] becomes [1,2,3,4].  
 
-// what about where more than one nested array is used
+// First cut of flattenner using for loops - non-recursive ie doesn't work for infinite nested arrays.
 
-function flattener(arr) {
-    newArr = []
+function flattenerOld(arr) {
     newArr2 = []
-    
-    function checkAndPush(element) {
-        console.log('This is element: ', element)
-        console.log('is element an array? ', Array.isArray(element))
-        
-        const isItemArray = item => Array.isArray(item)
-        const pushToNewArray = item => newArr2.push(item)
-            
-        function pushNestedArray(element) {
-            console.log('This is pushNestedArray element: ', element)
-
-            element.forEach((item, i) => {
-                Array.isArray(item) ? pushNestedArray(item) : pushToNewArray(item)
-            })
-        }
-        
-        isItemArray(element) ? pushNestedArray(element) : pushToNewArray(element)
-        
-    }
-    
-    arr.forEach((element) => checkAndPush(element))
-    
-    
-    
-    
-    // slightly refactored
     
     for (i = 0; i < arr.length; i++) {
         // loop over items in an array...
@@ -613,43 +588,75 @@ function flattener(arr) {
               const secondLayerObjFound = Array.isArray(arr[i][j])
               if (secondLayerObjFound) {
                     for (k = 0; k < arr[i][j].length; k++) {
-                    newArr.push(arr[i][j][k])
+                    newArr2.push(arr[i][j][k])
                     }
                 } else {
-                newArr.push(arr[i][j])
+                newArr2.push(arr[i][j])
                 }
             }
         } else {
-            newArr.push(arr[i])
+            newArr2.push(arr[i])
         }
     }
 
-    console.log("This is newArr: ", newArr)
     console.log("This is newArr2: ", newArr2)
 }
 
-//flattener([[[1],2,3],4])
+flattenerOld([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 
-flattener([[1,2,[3]],4])
+// Refactored test with functional programming and recursive function structure.
 
-// DO RECURSION
+function flattener(arr) {
+    outputArray = []
+    
+    function checkAndPush(element) {
+        
+        const isItemArray = item => Array.isArray(item)
+        const pushToOutputArray = item => outputArray.push(item)
+            
+        function pushNestedArray(element) {
+            element.forEach((item) => {
+                isItemArray(item) ? pushNestedArray(item) : pushToOutputArray(item)
+            })
+        }
+        
+        isItemArray(element) ? pushNestedArray(element) : pushToOutputArray(element)
+    }
+    
+    arr.forEach((element) => checkAndPush(element))
 
-    //    for (i = 0; i < arr.length; i++) {
-//        // for each object (ie array) found, loop over that sub-array and push to newArr
-//        if (typeof arr[i] === "object") {
-//            for (j = 0; j < arr[i].length; j++) {
+    console.log("This is outputArray: ", outputArray)
+}
+
+flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
+
+// BACKUP OF FLICK TEST
+
+//function flattener(arr) {
+//    newArr = []
+//    
+//    function checkAndPush(element) {
+//        console.log('This is element: ', element)
+//        console.log('is element an array? ', Array.isArray(element))
+//        
+//        const isItemArray = item => Array.isArray(item)
+//        const pushToNewArray = item => newArr.push(item)
 //            
-//              if (typeof arr[i][j] === "object") {
-//                    for (k = 0; k < arr[i][j].length; k++) {
-//                    newArr.push(arr[i][j][k])
-//                    }
-//                } else {
-//                newArr.push(arr[i][j])
-//                }
-//            }
-//        } else {
-//            newArr.push(arr[i])
+//        function pushNestedArray(element) {
+//            console.log('This is pushNestedArray element: ', element)
+//
+//            element.forEach((item) => {
+//                isItemArray(item) ? pushNestedArray(item) : pushToNewArray(item)
+//            })
 //        }
+//        
+//        isItemArray(element) ? pushNestedArray(element) : pushToNewArray(element)
 //    }
-
+//    
+//    arr.forEach((element) => checkAndPush(element))
+//
+//    console.log("This is newArr: ", newArr)
+//}
+//
+//flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 

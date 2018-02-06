@@ -90,26 +90,54 @@ words.each { |word|
  		print word + " "
   end }
 
-# JQUERY
+# RUBY ITERATING OVER ARRAYS
 
-<script>
-  $(document).ready(function() {
-    $("button").addClass("animated bounce");
-    $(".well").addClass("animated shake");
-    $("#target3").addClass("animated fadeOut");
-    $("button").removeClass("btn-default");
-    $("#target1").css("color", "red");
-    $("#target1").prop("disabled", true); //disables button
-    $("#target4").html("<em>#target4</em>"); //swap text with same but emphasised.
-    $("#target4").remove();
-    $("#target2").appendTo("#right-well"); // to move element to another element by using ID tags.
-    $("#target5").clone().appendTo("#left-well"); // clone then move.
-    $("#target1").parent().css("background-color", "red");
-    $("#right-well").children().css("color", "orange");
-    $(".target:nth-child(2)").addClass("animated bounce");
-    $(".target:even").addClass("animated shake");
-    $("body").addClass("animated hinge");
-    
-  });
-</script>
+s = [["ham", "swiss"], ["turkey", "cheddar"], ["roast beef", "gruyere"]]
+
+s.each { |sub_array| sub_array.each { |element| puts element }}
+
+
+lunch_order = {
+  "Ryan" => "wonton soup",
+  "Eric" => "hamburger",
+  "Jimmy" => "sandwich",
+  "Sasha" => "salad",
+  "Cole" => "taco"
+}
+
+lunch_order.each { |ord, fd| 
+  puts "#{fd}"
+  }
+
+# CREATE WORD HISTOGRAM
+
+puts "Enter input"
+text = gets.chomp
+
+words = text.split
+
+frequencies = Hash.new(0)
+
+words.each { |word| frequencies["#{word}"] += 1 }
+
+frequencies = frequencies.sort_by do | word, count | 
+  count
+end
+frequencies.reverse!
+
+frequencies.each { |freq, count| 
+  puts freq + " " + count.to_s
+  }
+
+# MORE STUFF
+
+books = ["Charlie and the Chocolate Factory", "War and Peace", "Utopia", "A Brief History of Time", "A Wrinkle in Time"]
+
+# To sort our books in ascending order, in-place
+books.sort! { |firstBook, secondBook| firstBook <=> secondBook }
+
+# Sort your books in descending order, in-place below
+
+print books.sort! { |firstBook, secondBook| secondBook <=> firstBook }
+
 
