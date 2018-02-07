@@ -140,4 +140,32 @@ books.sort! { |firstBook, secondBook| firstBook <=> secondBook }
 
 print books.sort! { |firstBook, secondBook| secondBook <=> firstBook }
 
+# SORT ARRAY ASCENDING / DESCENDING
+
+def alphabetize(arr, rev = false)
+  arr.sort!
+  if rev == true
+    arr.reverse!
+  else
+  	arr
+  end
+end
+
+numbers = [3, 5, 1, 6]
+
+puts alphabetize(numbers)
+
+# ITERATING TO GET KEYS FROM Object
+
+matz = { "First name" => "Yukihiro",
+  "Last name" => "Matsumoto",
+  "Age" => 47,
+  "Nationality" => "Japanese",
+  "Nickname" => "Matz"
+}
+
+matz.each do |key, value| 
+  puts matz[key]
+end
+
 
