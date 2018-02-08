@@ -168,4 +168,41 @@ matz.each do |key, value|
   puts matz[key]
 end
 
+# convert strings to symbols
 
+strings = ["HTML", "CSS", "JavaScript", "Python", "Ruby"]
+symbols = []
+
+strings.each do |s| 
+ symbols.push(s.intern)
+end 
+print symbols
+
+#filtering
+
+grades = { alice: 100,
+  bob: 92,
+  chris: 95,
+  dave: 97
+}
+
+grades.select { |name, grade| grade <  97 }
+# ==> { :bob => 92, :chris => 95 }
+
+grades.select { |k, v| k == :alice }
+# ==> { :alice => 100 }
+
+movie_ratings = {
+  memento: 3,
+  primer: 3.5,
+  the_matrix: 3,
+  truman_show: 4,
+  red_dawn: 1.5,
+  skyfall: 4,
+  alex_cross: 2,
+  uhf: 1,
+  lion_king: 3.5
+}
+# Add your code below!
+
+movie_ratings.each_key { |title| puts title }
