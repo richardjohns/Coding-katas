@@ -628,6 +628,7 @@ function flattener(arr) {
     console.log("This is outputArray: ", outputArray)
 }
 
+// testing edge cases of multiple arrays nested 3 layers deep.
 flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 
 // BACKUP OF FLICK TEST
@@ -660,3 +661,106 @@ flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 //
 //flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 
+// Codewars - test if number is a perfect square. Code asks if number ends in 1, 4, 5, 6, or 9 - if so is perfect square. Code works but theory is wrong eg 26 is not a perfect square - don't believe everything you read on the internet!
+
+var isSquare = function(n){
+ 
+  function squareCheck(n) {
+     // All perfect squares end in 1, 4, 5, 6, 9 or 00
+     var stringDigits = (""+n).split("");
+     var digits = stringDigits.map(str => Number(str))
+     var lastDigit = digits[digits.length - 1]
+     var scndLastDigit = digits[digits.length - 2]
+     
+     var testArr = []
+     testArr.push(scndLastDigit, lastDigit)
+     console.log('This is testArr: ',testArr)
+     
+     if (testArr[0] == 0 && testArr[1] == 0) {
+//        console.log('This was a square with double-zero')
+       return true
+     } else if (testArr[0] == undefined || 0 && testArr[1] == 1 || 4 || 5 || 6 || 9) {
+//        console.log('This was a square')
+       return true
+     } else {
+       return false
+     }
+  }
+
+  if (n < 0) {
+    console.log("Negative numbers cannot be square numbers")
+    return false
+  } else if (n > 0) {
+    squareCheck(n)  
+  }
+ }
+
+// Codewars -- accum("abcd"); becomes "A-Bb-Ccc-Dddd". Mostly there except upper/lowercase. 
+
+function accum(s) {
+  var str = s.split("");
+  strCounter = 0
+  lenCounter = 1
+  var outputLetters = []
+
+  for (i = 0; i < str.length; i++) {
+  
+    for (j = 0; j < lenCounter; j++) {
+      var input = str[strCounter]
+      var inputLetter = input.toLowerCase()
+      
+      if (j > 0) {
+        inputLetter = input.toLowerCase()
+      } else {
+        inputLetter = input.toUpperCase()
+      }
+
+      if (j === lenCounter - 1) {
+        outputLetters.push(inputLetter)
+        outputLetters.push("-")
+      } else {
+        outputLetters.push(inputLetter)
+      }    
+    }
+
+    var outputStr = outputLetters.join("")
+    strCounter ++
+    lenCounter ++
+
+  }
+  console.log('This is outputStr: ',outputStr)  
+  outputStr = outputStr.slice(0,-1)
+  return outputStr
+}
+
+// Codewars - DNA strand. Each letter is paired, and each element of the string passed in is flipped to its pair before outputting
+
+function DNAStrand(dna){
+  return dna.split("").map((c,i) => c === "A" ? c = "T" 
+                                    : c === "T" ? c = "A"
+                                    : c === "G" ? c = "C"
+                                    : c === "C" ? c = "G"
+                                    : c
+  ).join("")
+}
+
+Test.assertEquals(DNAStrand("AAAA"),"TTTT","String AAAA is");
+
+// Codewars - Multiples of 3 or 5 below the number passed in
+
+function solution(number){
+  arr = []
+  for (i = 1; i < number; i++) {
+    arr.push(i)
+  }
+  
+  return arr.filter((a,i) => a % 3 === 0 || a % 5 === 0).reduce((a,b) => a + b)
+}
+
+// Codewars - Take number, split into array of numbers, square each number and rejoin
+
+function squareDigits(num){
+  var digits = (""+num).split("")
+  var nums = digits.map(d => Number(d)).map(d => d * d).map(String).join("")
+  return Number(nums)
+}
