@@ -754,7 +754,7 @@ function solution(number){
     arr.push(i)
   }
   
-  return arr.filter((a,i) => a % 3 === 0 || a % 5 === 0).reduce((a,b) => a + b)
+  return arr.filter((a,i) => a % 3 === 0 || a % 5 === 0).reduce((a,b) => a + b, 0)
 }
 
 // Codewars - Take number, split into array of numbers, square each number and rejoin
@@ -763,4 +763,68 @@ function squareDigits(num){
   var digits = (""+num).split("")
   var nums = digits.map(d => Number(d)).map(d => d * d).map(String).join("")
   return Number(nums)
+}
+
+// Codewars - Take array of numbers, find minimum, delete out using splice.
+
+function removeSmallest(numbers) {
+    min = Math.min.apply(Math, numbers)
+    delIndex = numbers.indexOf(min)
+    numbers.splice(delIndex, 1)
+    return numbers
+  }
+
+Test.assertSimilar(removeSmallest([1, 2, 3, 4, 5]), [2, 3, 4, 5], "Wrong result for [1, 2, 3, 4, 5]");
+
+// Codewars - Playing with digits - Code working except for edge case involving passing number with 0 in it to function
+
+// Some numbers have funny properties. For example:
+// 89 --> 8¹ + 9² = 89 * 1
+// 695 --> 6² + 9³ + 5⁴= 1390 = 695 * 2
+
+// 46288 --> 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+
+// Given a positive integer n written as abcd... (a, b, c, d... being digits) and a positive integer p we want to find a positive integer k, if it exists, 
+// such as the sum of the digits of n taken to the successive powers of p is equal to k * n. In other words:
+
+// Is there an integer k such as : (a ^ p + b ^ (p+1) + c ^(p+2) + d ^ (p+3) + ...) = n * k
+
+// If it is the case we will return k, if not return -1.
+
+// Note: n, p will always be given as strictly positive integers.
+
+function digPow(n, p){
+  kArr = []
+  powArr = []
+  ansVal = 1
+  
+  var digits = (""+n).split("")
+  var digArr = digits.map(d => Number(d))
+  console.log('This is digArr: ',digArr)  
+  
+  for(i = 1; i < 129340; i++) {
+    kArr.push(n * i)
+  }
+  
+  for (i = 0; i < digArr.length; i++) {
+    powArr.push(Math.pow(digArr[i],p + i))
+  }
+  powArrSum = powArr.reduce((a,b) => a + b)
+  console.log('This is powArrSum: ',powArrSum)
+  
+  kArrMatch = kArr.some(r => r === powArrSum)
+  //kArrMatch = kArr.some(r=> powArr.includes(r)) - Nice - matches value in one array to any found in target array.
+  kArrFind = kArr.find(j => j == powArrSum)
+  kArrIndex = kArr.indexOf(kArrFind)
+  
+  console.log('This is kArr: ',kArr)
+  console.log('This is kArrMatch: ',kArrMatch)
+  console.log('This is KArrFind: ',kArrFind)
+  console.log('This is KArrIndex: ',kArrIndex)
+  console.log('This is powArr: ',powArr)
+
+  kArrMatch ? ansVal = kArrIndex + 1
+            : ansVal = -1 
+   
+  return ansVal
 }
