@@ -828,3 +828,52 @@ function digPow(n, p){
    
   return ansVal
 }
+
+// Codewars - Title case - incomplete as doesn't yet deal with minorWords using .replace function
+
+function titleCase(title, minorWords) {
+  console.log('typeof title: ',typeof title)
+  console.log('title: ',title)
+  
+  if (title === '') {
+    return title
+  } else {
+  var titleLow = title.toLowerCase().split(" ")
+  console.log('titleLow: ',titleLow)
+  return titleLow.map(l => l.charAt(0).toUpperCase() + l.slice(1)).join(' ')
+  }
+}
+
+// Codewars - format an array of names like 'Bart, Lisa & Maggie'
+
+function list(names){
+  outputArr = []
+  names.forEach((name,i) => {
+      names.length === 1 ? outputArr.push(name.name)
+      : i === names.length - 1 ? outputArr.push('& ' + name.name)
+      : i === names.length - 2 ? outputArr.push(name.name + ' ')
+                               : outputArr.push(name.name + ', ')
+  })
+ return outputArr.join('')
+}
+
+Test.assertEquals(list([{name: 'Bart'},{name: 'Lisa'},{name: 'Maggie'},{name: 'Homer'},{name: 'Marge'}]), 'Bart, Lisa, Maggie, Homer & Marge',
+"Must work with many names")
+
+// Codewars - Sort only the odd numbers of an array. Need to sort some edge cases... where same number in array, indexOf returns 1st index and not subsequent.
+
+function sortArray(array) {
+  var oddNumIdx = []
+  array.forEach(a => a % 2 !== 0 ? oddNumIdx.push(array.indexOf(a)) : a)
+  
+  var oddNumArr = array.filter(a => a % 2 !== 0).sort((a,b) => a - b)
+  
+  console.log('oddNumIdx: ',oddNumIdx)
+  console.log('oddNumArr: ',oddNumArr)
+
+  var newArr = array
+  oddNumArr.forEach((a,i) => newArr.splice(oddNumIdx[i],1,oddNumArr[i]))
+  
+  return newArr
+
+}
