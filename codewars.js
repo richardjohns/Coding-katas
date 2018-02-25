@@ -1,4 +1,3 @@
-
 // Codewars - test if number is a perfect square. Code asks if number ends in 1, 4, 5, 6, or 9 - if so is perfect square. Code works but theory is wrong eg 26 is not a perfect square - don't believe everything you read on the internet!
 
 var isSquare = function(n){
@@ -71,6 +70,8 @@ function accum(s) {
   return outputStr
 }
 
+accum("abcd")
+
 // Codewars - DNA strand. Each letter is paired, and each element of the string passed in is flipped to its pair before outputting
 
 function DNAStrand(dna){
@@ -81,6 +82,8 @@ function DNAStrand(dna){
                                     : c
   ).join("")
 }
+
+DNAStrand("AAAA")
 
 Test.assertEquals(DNAStrand("AAAA"),"TTTT","String AAAA is");
 
@@ -214,4 +217,103 @@ function sortArray(array) {
   
   return newArr
 
+}
+
+// Codewars - Where my anagrams at? Not working yet - how to match objects in any array?
+
+function anagrams(word, words) {
+  // flatten all words into single array for testing.
+  wordArr = []
+  function wordArray(word,words) {
+    wordArr.push(word)
+    words.forEach(w => wordArr.push(w))
+  }
+  wordArray(word, words)
+  console.log('wordArr: ',wordArr)
+
+  // put string lengths into array for testing multiple string lengths found.
+  const strLengths = []
+  wordArr.forEach(w => strLengths.push(w.length))
+  console.log('strLengths: ',strLengths)
+    
+  // split each word into own sub-array 
+  const wordArrArr = wordArr.map((w,i) => w.split(''))
+  console.log('wordArrArr: ',wordArrArr)
+  
+  // do letter count of each word sub-array
+  wordArrCount = []
+  for (i = 0; i < wordArrArr.length; i++) {
+    var occurrences = wordArrArr[i].reduce(function(obj, item) {
+    obj[item] = (obj[item] || 0) + 1    
+    return obj
+  }, {})
+    wordArrCount.push(occurrences)
+  }
+
+  console.log('WordArrCount: ',wordArrCount)
+  
+  // compare letter counts and push matches to anagram array.
+  var matches = []
+     
+  wordArr.forEach(w => {
+      console.log(w)
+      var match = 
+      
+  })
+  
+//  function findByMatchingProperties(set, properties) {
+//    console.log(properties)
+//    return set.filter(function (entry) {
+//        return Object.keys(properties).every(function (key) {
+//            matches.push(entry[key] === properties[key])
+//        });
+//    });
+//  }
+    
+//  console.log('wordArrCount[i]: ',wordArrCount[0])
+
+
+  // function findMatchLoop(wordArrCount) {
+//      for (i = 0; i > wordArrCount.length; i++) {
+//          console.log('wordArrCount[i]: ',wordArrCount.length)
+//        // findByMatchingProperties(wordArrCount, wordArrCount[i])
+//      }
+  // }
+    
+  // findMatchLoop(wordArrCount)
+  console.log('matches: ',matches)
+    
+}
+
+anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada'])
+    
+// Codewars - format array into phone number... best solution then my answer below
+    
+function createPhoneNumber(numbers){
+  var format = "(xxx) xxx-xxxx";
+  
+  for(var i = 0; i < numbers.length; i++)
+  {
+    format = format.replace('x', numbers[i]);
+  }
+  
+  return format;
+}
+    
+    
+// and mine... 
+    
+function createPhoneNumber(numbers){
+  phArr = []
+  for (i = 0; i < numbers.length + 3; i++) {
+  i === 0 ? phArr.push('\(')
+  : i <=  3 ? phArr.push(numbers[i - 1])
+  : i === 4 ? phArr.push('\) ')
+  : i <=  7 ? phArr.push(numbers[i - 2])
+  : i === 8 ? phArr.push('-')
+  : i <= 13 ? phArr.push(numbers[i - 3])
+            : phArr.push('-')
+  }
+  return phArr.join('')
+  
 }

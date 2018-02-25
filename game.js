@@ -46,6 +46,7 @@ ansArr = [
 
 round = 1
 
+// Game round logic
 function gameStart() {
     genXArr()
     console.log('Here are the boxes...')

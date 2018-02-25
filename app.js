@@ -662,7 +662,41 @@
 //flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 
 
+function accum(s) {
+  var str = s.split("");
+  strCounter = 0
+  lenCounter = 1
+  var outputLetters = []
 
+  for (i = 0; i < str.length; i++) {
+  
+    for (j = 0; j < lenCounter; j++) {
+      var input = str[strCounter]
+      var inputLetter = input.toLowerCase()
+      
+      if (j > 0) {
+        inputLetter = input.toLowerCase()
+      } else {
+        inputLetter = input.toUpperCase()
+      }
 
+      if (j === lenCounter - 1) {
+        outputLetters.push(inputLetter)
+        outputLetters.push("-")
+      } else {
+        outputLetters.push(inputLetter)
+      }    
+    }
 
+    var outputStr = outputLetters.join("")
+    strCounter ++
+    lenCounter ++
+
+  }
+  console.log('This is outputStr: ',outputStr)  
+  outputStr = outputStr.slice(0,-1)
+  return outputStr
+}
+
+accum("abcd")
 
