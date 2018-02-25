@@ -317,3 +317,41 @@ function createPhoneNumber(numbers){
   return phArr.join('')
   
 }
+    
+// Codewars - decode the morsecode
+    
+decodeMorse = function(morseCode){
+  words = morseCode.split('   ').filter(w => w != '')
+  wordsArr = words.map((w,i) => w.split(' '))
+  
+  morseLetters = []
+  wordsArr.forEach(w => {
+      w.map((w,i) => {
+        morseLetters.push(MORSE_CODE[w])
+      })
+      morseLetters.push(' ')
+    })
+  return morseLetters.slice(0,-1).join('')
+}
+
+// Codewars - Find the missing term in an Arithmetic Progression
+
+var findMissing = function (list) {  
+  console.log('list: ',list)
+  var diffCheck = []
+  
+  for (i = 0; i < list.length - 1; i++) {
+    diffCheck.push(list[i + 1] - list[i])
+  }
+  console.log('diffCheck: ',diffCheck)
+  
+  for (i = 0; i < diffCheck.length; i++) {
+    if (diffCheck[i + 1] / diffCheck[i] === 2) {
+      var missingInc = (list[i + 2] - list[i + 1]) / 2
+      return list[i + 1] + missingInc
+    } else if (diffCheck[i] / diffCheck[i + 1] === 2) {
+      var missingInc2 = (list[i + 1] - list[i]) / 2     
+      return list[i] + missingInc2
+    }
+  }
+}
