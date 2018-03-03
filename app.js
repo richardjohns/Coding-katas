@@ -662,41 +662,62 @@
 //flattener([[1,2,[3]],4,[5,6],[7,[8,[9,10]]]])
 
 
-function accum(s) {
-  var str = s.split("");
-  strCounter = 0
-  lenCounter = 1
-  var outputLetters = []
+//function accum(s) {
+//  var str = s.split("");
+//  strCounter = 0
+//  lenCounter = 1
+//  var outputLetters = []
+//
+//  for (i = 0; i < str.length; i++) {
+//  
+//    for (j = 0; j < lenCounter; j++) {
+//      var input = str[strCounter]
+//      var inputLetter = input.toLowerCase()
+//      
+//      if (j > 0) {
+//        inputLetter = input.toLowerCase()
+//      } else {
+//        inputLetter = input.toUpperCase()
+//      }
+//
+//      if (j === lenCounter - 1) {
+//        outputLetters.push(inputLetter)
+//        outputLetters.push("-")
+//      } else {
+//        outputLetters.push(inputLetter)
+//      }    
+//    }
+//
+//    var outputStr = outputLetters.join("")
+//    strCounter ++
+//    lenCounter ++
+//
+//  }
+//  console.log('This is outputStr: ',outputStr)  
+//  outputStr = outputStr.slice(0,-1)
+//  return outputStr
+//}
+//
+//accum("abcd")
 
-  for (i = 0; i < str.length; i++) {
+// Mutations - Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+
+function mutation(arr) {
+  var firstStr = arr[0].toLowerCase().split("")
+  var secondStr = arr[1].toLowerCase().split("")
   
-    for (j = 0; j < lenCounter; j++) {
-      var input = str[strCounter]
-      var inputLetter = input.toLowerCase()
-      
-      if (j > 0) {
-        inputLetter = input.toLowerCase()
-      } else {
-        inputLetter = input.toUpperCase()
-      }
+  var strCheck1 = firstStr.map((s,i) => secondStr.includes(s))
+  var strCheck2 = secondStr.map((s,i) => firstStr.includes(s))
 
-      if (j === lenCounter - 1) {
-        outputLetters.push(inputLetter)
-        outputLetters.push("-")
-      } else {
-        outputLetters.push(inputLetter)
-      }    
-    }
+  console.log('firstStr: ',firstStr)
+  console.log('secondStr: ',secondStr)
+  console.log('strCheck1: ',strCheck1)
+  console.log('strCheck2: ',strCheck2)
 
-    var outputStr = outputLetters.join("")
-    strCounter ++
-    lenCounter ++
-
+  strCheck1.every(s => s === true) || strCheck2.every(s => s === true) ? true : false
   }
-  console.log('This is outputStr: ',outputStr)  
-  outputStr = outputStr.slice(0,-1)
-  return outputStr
+  
 }
 
-accum("abcd")
+mutation(["hello", "hey"]);
 
