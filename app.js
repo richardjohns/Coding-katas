@@ -709,15 +709,22 @@ function mutation(arr) {
   var strCheck1 = firstStr.map((s,i) => secondStr.includes(s))
   var strCheck2 = secondStr.map((s,i) => firstStr.includes(s))
 
-  console.log('firstStr: ',firstStr)
-  console.log('secondStr: ',secondStr)
-  console.log('strCheck1: ',strCheck1)
-  console.log('strCheck2: ',strCheck2)
-
   strCheck1.every(s => s === true) || strCheck2.every(s => s === true) ? true : false
   }
   
 }
 
 mutation(["hello", "hey"]);
+
+// Falsey Bouncer
+
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  
+  arr.forEach(a => console.log(a, typeof a))
+  var filt = arr.filter(a => a !== false && a !== null && a !== 0 && a !== "" && a !== undefined && Number.isNaN(a) !== true)  
+  return filt
+}
+
+bouncer([7, "ate", "", false, 9]);
 
