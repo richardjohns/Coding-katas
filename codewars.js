@@ -412,3 +412,30 @@ function validBraces(braces){
   return trueDat.includes(true)
 }
 
+// Codewars - Sum of Pairs - robbed of honour as test case fails to replicate the example set out in the example solution.
+// Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.
+    
+var sum_pairs=function(ints, s){
+  console.log('ints: ',ints)
+  console.log('s: ',s)
+  var numsPush = []  
+  var idxPush = []
+
+  for (i = 0; i < ints.length; i++) {
+     for (j = i + 1; j < ints.length; j++) {
+       idxPush.push([i,j])
+       numsPush.push([ints[i],ints[j]])
+     }
+  }
+  
+  var numsSum = numsPush.map(n => n[0] + n[1])
+  var matchS = numsSum.findIndex(n => n === s)
+          
+  console.log('numsPush: ',numsPush)
+  console.log('idxPush: ',idxPush)
+  console.log('numsSum: ',numsSum)
+  console.log('matchS: ',matchS)
+  
+  return numsPush[matchS]
+
+}
