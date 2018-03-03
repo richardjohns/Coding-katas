@@ -702,29 +702,77 @@
 
 // Mutations - Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
 
-function mutation(arr) {
-  var firstStr = arr[0].toLowerCase().split("")
-  var secondStr = arr[1].toLowerCase().split("")
-  
-  var strCheck1 = firstStr.map((s,i) => secondStr.includes(s))
-  var strCheck2 = secondStr.map((s,i) => firstStr.includes(s))
-
-  strCheck1.every(s => s === true) || strCheck2.every(s => s === true) ? true : false
-  }
-  
-}
-
-mutation(["hello", "hey"]);
+//function mutation(arr) {
+//  var firstStr = arr[0].toLowerCase().split("")
+//  var secondStr = arr[1].toLowerCase().split("")
+//  
+//  var strCheck1 = firstStr.map((s,i) => secondStr.includes(s))
+//  var strCheck2 = secondStr.map((s,i) => firstStr.includes(s))
+//
+//  strCheck1.every(s => s === true) || strCheck2.every(s => s === true) ? true : false
+//  }
+//  
+//}
+//
+//mutation(["hello", "hey"]);
 
 // Falsey Bouncer
 
-function bouncer(arr) {
-  // Don't show a false ID to this bouncer.
-  
-  arr.forEach(a => console.log(a, typeof a))
-  var filt = arr.filter(a => a !== false && a !== null && a !== 0 && a !== "" && a !== undefined && Number.isNaN(a) !== true)  
-  return filt
+//function bouncer(arr) {
+//  // Don't show a false ID to this bouncer.
+//  
+//  arr.forEach(a => console.log(a, typeof a))
+//  var filt = arr.filter(a => a !== false && a !== null && a !== 0 && a !== "" && a !== undefined && Number.isNaN(a) !== true)  
+//  return filt
+//}
+//
+//bouncer([7, "ate", "", false, 9]);
+
+
+// Build a Simon Game (focus on game logic without matching UI)
+
+function simonGame() {
+    
+console.log('Game running')
+var username = prompt("What is your name?");
+console.log(`Hi ${username}! 
+Welcome to Simon game! 
+
+The rules are as follows: 
+1. Once the game starts, you'll be briefly shown a random button press which is either red ('r'), blue ('b'), green ('g'), or yellow ('y').
+2. Then you can input what button was pressed. If it matches, you win the round and Simon will repeat the button press and add on a new one for you to guess.
+3. The sequence of button presses that you need to remember will keep growing until it's 20 button presses long... guess all 20 to beat Simon!
+`)
+
+buttonArr = []
+    
+selectArr = ['r','b','g','y']    
+
+round = 1
+
+// Game round logic
+function gameStart() {
+    genXArr()
+    console.log('Here we go!')
+    console.log(JSON.stringify(xArr, null, ''))
+    buttonChoice()
 }
 
-bouncer([7, "ate", "", false, 9]);
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+    
+function buttonChoice() {
+    buttonArr.push(selectArr[getRandomInt()])
+    console.log('Simon presses: ' +  )
+    
+}
+
+
+gameStart()
+
+}
+
+simonGame()
+
 
