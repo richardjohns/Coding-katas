@@ -355,3 +355,60 @@ var findMissing = function (list) {
     }
   }
 }
+
+// Codewars - Write a function that takes a string of braces, and determines if the order of the braces is valid. It should return true if the string is valid, and false if it's invalid.
+
+function validBraces(braces){
+
+  // Globals
+  let bracketObj = { bkt: "()", crly: "{}", sq: "[]" }
+  let arr = braces.split("")
+  bracesTestArr = []
+  bracesTestArr2 = []
+  
+  if(braces.length % 2 !== 0) {
+    return false
+  }
+  
+  // Get array of braces, pairing from outer to inner characters
+  arr.forEach((a,i) => bracesTestArr.push(a + arr[(arr.length - 1) - i]))
+  let bracesOutToInArr = bracesTestArr.slice(0, arr.length / 2)
+    
+  // Get array of braces, pairing from left to right
+  for (i = 0; i < arr.length; i++) {
+    if (i % 2 === 0) {
+      bracesTestArr2.push(arr[i] + arr[i + 1])
+    } 
+  }
+  let bracesLeftToRightArr = bracesTestArr2
+  
+  console.log('braces: ',braces)
+  console.log('bracesOutToInArr: ',bracesOutToInArr)
+  console.log('bracesLeftToRightArr: ',bracesLeftToRightArr)
+  
+  // test above arrays and push any test pass results to a results array
+  let testResultsArr = []
+  bracesOutToInArr.forEach(b => {
+    b === bracketObj.bkt || b === bracketObj.crly || b === bracketObj.sq ? testResultsArr.push(true) : testResultsArr.push(false)
+    })
+  bracesLeftToRightArr.forEach(b => {
+  b === bracketObj.bkt || b === bracketObj.crly || b === bracketObj.sq ? testResultsArr.push(true) : testResultsArr.push(false)
+  })
+    
+  console.log('testResultsArr: ',testResultsArr)
+  
+  var trueDat = []
+  
+  var trueFalse = testResultsArr.forEach(t => {
+    if (t === true) {
+    console.log("There was a true test!")
+    trueDat.push(true) 
+    } else {
+    trueDat.push(false)
+    }
+  })
+  
+  console.log('trueDat: ',trueDat)
+  return trueDat.includes(true)
+}
+
