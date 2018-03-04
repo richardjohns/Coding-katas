@@ -736,39 +736,81 @@ function simonGame() {
 console.log('Game running')
 var username = prompt("What is your name?");
 console.log(`Hi ${username}! 
-Welcome to Simon game! 
+Welcome to Simon's game! 
 
 The rules are as follows: 
 1. Once the game starts, you'll be briefly shown a random button press which is either red ('r'), blue ('b'), green ('g'), or yellow ('y').
-2. Then you can input what button was pressed. If it matches, you win the round and Simon will repeat the button press and add on a new one for you to guess.
+2. Then you can type in the button you think that Simon pressed. If it matches, you win the round and Simon will repeat the button press and add on a new one for you to guess.
 3. The sequence of button presses that you need to remember will keep growing until it's 20 button presses long... guess all 20 to beat Simon!
 `)
 
 buttonArr = []
-    
+playerArr = []
 selectArr = ['r','b','g','y']    
 
 round = 1
 
 // Game round logic
 function gameStart() {
-    genXArr()
     console.log('Here we go!')
-    console.log(JSON.stringify(xArr, null, ''))
     buttonChoice()
 }
+    
+function restartRound() {
+    
+}
 
+function nextRound() {
+    round += 1
+    buttonChoice()
+}
+    
+    
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
     
-function buttonChoice() {
-    buttonArr.push(selectArr[getRandomInt()])
-    console.log('Simon presses: ' +  )
+function displayPriorButtonPresses(buttonArr) {
+    buttonArr.forEach(b => console.log(b))
+}
     
+function buttonChoice() {
+    var buttonPush = selectArr[getRandomInt(selectArr.length)]
+    
+    // Here is where the button presses from previous rounds are pressed in order for the player, and then the new button press added to the sequence
+    
+    if (buttonArr.length >= 1) {
+        console.log('Simon presses: ')
+        setTimeout(displayPriorButtonPresses(buttonArr), 500)
+        buttonArr.push(buttonPush)
+    } else {
+        console.log('Simon presses: ')
+        buttonArr.push(buttonPush)
+    }
+    
+    // console.log(JSON.stringify(buttonArr, null, ''))
+
+    var playerButton = prompt('What buttons do you choose?')
+    playerArr.push(playerButton)
+    console.log('buttonArr: ',buttonArr)
+    console.log('playerArr: ',playerArr)
+    
+    buttonMatch(buttonArr, playerArr)
 }
 
 
+function buttonMatch(buttonArr, playerArr) {
+    if (buttonArr[buttonArr.length - 1] === playerArr[0]) {
+        console.log('You matched Simon! Let\'s play next round...')
+        playerArr = []
+        nextRound()
+    } else {
+        console.log('Simon got you! Try again...')
+        playerArr = []
+        restartRound()
+    }
+} 
+    
 gameStart()
 
 }
