@@ -770,10 +770,20 @@ function restartRound() {
 }
 
 function nextRound() {
-    console.log('On to round ' + round + ' - Here we go!')
-    round += 1
-    playerArr = []
-    simonChoice()
+    if (round <= 20) {
+        console.log('On to round ' + round + ' - Here we go!')
+        round += 1
+        playerArr = []
+        simonChoice()
+    } else {
+        winGame()
+    }
+}
+    
+function winGame() {
+    console.log('You win! You passed 20 rounds with Simon and won!')
+    buttonArr = []
+    gameStart()
 }
 
 function displayPriorButtonPresses(buttonArr) {
