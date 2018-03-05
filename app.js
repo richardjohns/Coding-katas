@@ -744,11 +744,16 @@ The rules are as follows:
 3. The sequence of button presses that you need to remember will keep growing until it's 20 button presses long... guess all 20 to beat Simon!
 `)
 
+// Globals / utils
+selectArr = ['r','b','g','y']   
 buttonArr = []
 playerArr = []
-selectArr = ['r','b','g','y']   
 round = 1
 var buttonPush = selectArr[getRandomInt(selectArr.length)]
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 // Game round logic
 function gameStart() {
@@ -767,11 +772,8 @@ function restartRound() {
 function nextRound() {
     console.log('Next round - Here we go!')
     round += 1
+    playerArr = []
     simonChoice()
-}
-    
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function displayPriorButtonPresses(buttonArr) {
@@ -799,25 +801,34 @@ function simonChoice() {
     
 function playerChoice() {
     console.log('Your turn...')
-    playerArr.length > 0 ? playerArr.length === buttonArr.length : playerArr[0] === 0
+    playerArr.length > 0 ? playerArr.length === buttonArr.length : playerArr.length === 1
     console.log('playerArr length set: ',playerArr)
     
     for (i = 0; i < buttonArr.length; i++) {
         var playerButton = prompt('Enter in all the buttons that you saw')
         playerArr.push(playerButton)
     }
-    // var playerButton = 'b'
     console.log('playerArr post-push: ',playerArr)
     buttonMatch(buttonArr, playerArr)
 }
 
+// Conditional results matching logic
+function matcher() {
+    matchArr = []    
+    for(i = 0; i < playerArr.length; i++) {
+        playerArr[i] === buttonArr[i] ? matchArr.push(true) : matchArr.push(false)
+    }
+    console.log('matchArr: ',matchArr)
+    return matchArr.every(m => m === true)
+}
+
 function buttonMatch(buttonArr, playerArr) {
-    if (buttonArr[buttonArr.length - 1] === playerArr[playerArr.length - 1]) {
+    if (matcher() == true) {
         console.log('You matched Simon! Keep it up!')
-        nextRound()
+        // nextRound()
     } else {
         console.log('Simon got you! Try again...')
-        restartRound()
+        // restartRound()
     }
 } 
     
