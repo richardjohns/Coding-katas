@@ -770,7 +770,7 @@ function restartRound() {
 }
 
 function nextRound() {
-    console.log('Next round - Here we go!')
+    console.log('On to round ' + round + ' - Here we go!')
     round += 1
     playerArr = []
     simonChoice()
@@ -825,10 +825,10 @@ function matcher() {
 function buttonMatch(buttonArr, playerArr) {
     if (matcher() == true) {
         console.log('You matched Simon! Keep it up!')
-        // nextRound()
+        nextRound()
     } else {
         console.log('Simon got you! Try again...')
-        // restartRound()
+        restartRound()
     }
 } 
     
