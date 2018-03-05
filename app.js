@@ -746,67 +746,77 @@ The rules are as follows:
 
 buttonArr = []
 playerArr = []
-selectArr = ['r','b','g','y']    
-
+selectArr = ['r','b','g','y']   
 round = 1
+var buttonPush = selectArr[getRandomInt(selectArr.length)]
 
 // Game round logic
 function gameStart() {
-    console.log('Here we go!')
-    buttonChoice()
+    alert('Shall we begin?')
+    simonChoice()
 }
     
 function restartRound() {
-    
+    console.log('Restarting round - Here we go!')
+    console.log('Simon pressed: ')
+    playerArr = []
+    displayPriorButtonPresses(buttonArr)
+    playerChoice()
 }
 
 function nextRound() {
+    console.log('Next round - Here we go!')
     round += 1
-    buttonChoice()
+    simonChoice()
 }
-    
     
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-    
+
 function displayPriorButtonPresses(buttonArr) {
-    buttonArr.forEach(b => console.log(b))
+    console.log('Simon pressed')
+    buttonArr.forEach((b,i) => console.log('i: ',i,' b: ',b))
+    // buttonArr.forEach(b => setTimeout(console.log(b),500))
 }
     
-function buttonChoice() {
-    var buttonPush = selectArr[getRandomInt(selectArr.length)]
+function simonsButton(buttonPush) {
+    console.log('Simon presses: ')
+    console.log(buttonPush)
+    buttonArr.push(buttonPush)
+}
     
-    // Here is where the button presses from previous rounds are pressed in order for the player, and then the new button press added to the sequence
-    
+function simonChoice() {
     if (buttonArr.length >= 1) {
-        console.log('Simon presses: ')
-        setTimeout(displayPriorButtonPresses(buttonArr), 500)
-        buttonArr.push(buttonPush)
+        displayPriorButtonPresses(buttonArr)
+        simonsButton(buttonPush)
     } else {
-        console.log('Simon presses: ')
-        buttonArr.push(buttonPush)
+        simonsButton(buttonPush)
     }
-    
-    // console.log(JSON.stringify(buttonArr, null, ''))
-
-    var playerButton = prompt('What buttons do you choose?')
-    playerArr.push(playerButton)
     console.log('buttonArr: ',buttonArr)
-    console.log('playerArr: ',playerArr)
+    playerChoice()
+}
     
+function playerChoice() {
+    console.log('Your turn...')
+    playerArr.length > 0 ? playerArr.length === buttonArr.length : playerArr[0] === 0
+    console.log('playerArr length set: ',playerArr)
+    
+    for (i = 0; i < buttonArr.length; i++) {
+        var playerButton = prompt('Enter in all the buttons that you saw')
+        playerArr.push(playerButton)
+    }
+    // var playerButton = 'b'
+    console.log('playerArr post-push: ',playerArr)
     buttonMatch(buttonArr, playerArr)
 }
 
-
 function buttonMatch(buttonArr, playerArr) {
-    if (buttonArr[buttonArr.length - 1] === playerArr[0]) {
-        console.log('You matched Simon! Let\'s play next round...')
-        playerArr = []
+    if (buttonArr[buttonArr.length - 1] === playerArr[playerArr.length - 1]) {
+        console.log('You matched Simon! Keep it up!')
         nextRound()
     } else {
         console.log('Simon got you! Try again...')
-        playerArr = []
         restartRound()
     }
 } 
