@@ -44,7 +44,7 @@ ansArr = [
     "dad!",
 ]    
 
-round = 1
+var round = 1
 
 // Game round logic
 function gameStart() {
