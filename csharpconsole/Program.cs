@@ -24,17 +24,59 @@ namespace csharpconsole
             // Globals
             // int wrongGuess = 0;
             string[] hangWord = "dodecahedron".ToCharArray().Select(c => c.ToString()).ToArray();
-            Console.WriteLine($@"This is hangWord.Length: {hangWord.Length}");
-            // string[] xArr = [];
+            // Console.WriteLine($@"This is hangWord.Length: {hangWord.Length}");
             var xArr = new List<string>();
 
             for (int i = 0; i < hangWord.Length; i++)
             {
                 xArr.Add("_");
             };
-
-            Console.WriteLine("xArr:", string.Join(",", xArr));
-
+            Console.WriteLine("xArr: " + string.Join(", ", xArr));
         }
+        public static void gameRound()
+            {
+                Console.WriteLine("What letter do you choose?");
+                var choice = Console.ReadLine();
+
+                var letterExists = hangWord.some(l => l === choice);
+                var findIdxChoice = hangWord.findIndex(l => l === choice);
+                var idxArr = new List<string>();
+
+                if (letterExists)
+                {
+                    findAllIdx(choice)
+                    Console.WriteLine("You got one! Here\'s the word again: ", xArr)
+                }
+                else
+                {
+                    Console.WriteLine("no match!")
+                    wrongGuess += 1
+                }
+
+            }
+
+        public static void findAllIdx(choice)
+            {
+            hangWord.forEach((l, i) =>
+            {
+                if (l === choice)
+                {
+                    idxArr.push(i)
+
+                }
+            })
+            spliceIn(choice)
+            }
+        
+        Console.WriteLine("idxArr: ", idxArr);
+
+        public static void spliceIn(choice)
+        {
+            for (i = 0; i < idxArr.length; i++)
+            {
+                xArr.splice(idxArr[i], 1, choice)
+            }
+        } 
+
     }
 }
