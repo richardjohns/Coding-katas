@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text; // used for the StringBuilder
 using System.Linq;
+using System.Collections.Generic;
 
 namespace csharpconsole
 {
@@ -20,6 +21,19 @@ namespace csharpconsole
             2. The catch is you'll only be able to make 8 wrong guesses before it's game over for hangman...
             Good luck! ");
 
+            // Globals
+            // int wrongGuess = 0;
+            string[] hangWord = "dodecahedron".ToCharArray().Select(c => c.ToString()).ToArray();
+            Console.WriteLine($@"This is hangWord.Length: {hangWord.Length}");
+            // string[] xArr = [];
+            var xArr = new List<string>();
+
+            for (int i = 0; i < hangWord.Length; i++)
+            {
+                xArr.Add("_");
+            };
+
+            xArr.ForEach(Console.WriteLine);
 
         }
     }
