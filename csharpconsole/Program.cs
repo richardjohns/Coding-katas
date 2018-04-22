@@ -11,6 +11,15 @@ namespace csharpconsole
     {
         static void Main(string[] args)
         {
+            welcome();
+            initialiseBoard();
+            gameRound();
+
+
+        }
+
+        public static string welcome()
+        {
             Console.WriteLine($@"            Hi there welcome to HangMan! 
             The game you don't want to win?
             What's your name?");
@@ -20,7 +29,11 @@ namespace csharpconsole
             1. You'll be shown a word with every letter blanked out. Your aim is guess each letter in the word.
             2. The catch is you'll only be able to make 8 wrong guesses before it's game over for hangman...
             Good luck! ");
+            return user;
+        }
 
+        public static List<string> initialiseBoard() 
+        {
             // Globals
             // int wrongGuess = 0;
             string[] hangWord = "dodecahedron".ToCharArray().Select(c => c.ToString()).ToArray();
@@ -32,50 +45,53 @@ namespace csharpconsole
                 xArr.Add("_");
             };
             Console.WriteLine("xArr: " + string.Join(", ", xArr));
+            return xArr;
+            
         }
+
         public static void gameRound()
             {
                 Console.WriteLine("What letter do you choose?");
                 var choice = Console.ReadLine();
 
-                var letterExists = hangWord.some(l => l === choice);
-                var findIdxChoice = hangWord.findIndex(l => l === choice);
-                var idxArr = new List<string>();
+                // var letterExists = hangWord.some(l => l === choice);
+                // var findIdxChoice = hangWord.findIndex(l => l === choice);
+                // var idxArr = new List<string>();
 
-                if (letterExists)
-                {
-                    findAllIdx(choice)
-                    Console.WriteLine("You got one! Here\'s the word again: ", xArr)
-                }
-                else
-                {
-                    Console.WriteLine("no match!")
-                    wrongGuess += 1
-                }
+                // if (letterExists)
+                // {
+                //     findAllIdx(choice)
+                //     Console.WriteLine("You got one! Here\'s the word again: ", xArr)
+                // }
+                // else
+                // {
+                //     Console.WriteLine("no match!")
+                //     wrongGuess += 1
+                // }
 
             }
 
-        public static void findAllIdx(choice)
+        public static void findAllIdx()
             {
-            hangWord.forEach((l, i) =>
-            {
-                if (l === choice)
-                {
-                    idxArr.push(i)
+            // hangWord.forEach((l, i) =>
+            // {
+            //     if (l === choice)
+            //     {
+            //         idxArr.push(i)
 
-                }
-            })
-            spliceIn(choice)
+            //     }
+            // })
+            // spliceIn(choice)
             }
         
-        Console.WriteLine("idxArr: ", idxArr);
+        // Console.WriteLine("idxArr: ", idxArr);
 
-        public static void spliceIn(choice)
+        public static void spliceIn()
         {
-            for (i = 0; i < idxArr.length; i++)
-            {
-                xArr.splice(idxArr[i], 1, choice)
-            }
+            // for (i = 0; i < idxArr.length; i++)
+            // {
+            //     xArr.splice(idxArr[i], 1, choice)
+            // }
         } 
 
     }
