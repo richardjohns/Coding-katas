@@ -1,0 +1,10 @@
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/bin/Debug/netcoreapp2.0/csharpconsole.deps.json
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/bin/Debug/netcoreapp2.0/csharpconsole.runtimeconfig.json
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/bin/Debug/netcoreapp2.0/csharpconsole.runtimeconfig.dev.json
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/bin/Debug/netcoreapp2.0/csharpconsole.dll
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/bin/Debug/netcoreapp2.0/csharpconsole.pdb
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/obj/Debug/netcoreapp2.0/csharpconsole.csproj.CoreCompileInputs.cache
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/obj/Debug/netcoreapp2.0/csharpconsole.AssemblyInfoInputs.cache
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/obj/Debug/netcoreapp2.0/csharpconsole.AssemblyInfo.cs
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/obj/Debug/netcoreapp2.0/csharpconsole.dll
+/Users/richardjohns/webdev/B3_GlobalEnvironment/Coding-katas/csharpconsole/obj/Debug/netcoreapp2.0/csharpconsole.pdb
