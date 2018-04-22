@@ -33,7 +33,7 @@ namespace csharpconsole
                 xArr.Add("_");
             };
 
-            xArr.ForEach(Console.WriteLine);
+            Console.WriteLine("xArr:", string.Join(",", xArr));
 
         }
     }
